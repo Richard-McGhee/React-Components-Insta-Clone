@@ -6,7 +6,6 @@ Look at each file to see what props need to be passed.
 
 // Import the state hook
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 // Import the Posts (plural!) and SearchBar components, since they are used inside App component
 import Posts from "./components/Posts/Posts";
 import SearchBar from "./components/SearchBar/SearchBar";
@@ -29,25 +28,24 @@ const App = () => {
     // The callback passed into `posts.map()` performs the following logic:
     //  - if the `id` of the post matches `postId`, return a new post object containing an increased 'likes' count.
     //  - otherwise just return the post object unchanged.
-    // setPosts(posts.map(item => {
-    //   if(postId === post.id){
-    //     return likeCount(likePost + 1)
-    //   }else {
-    //     return posts
-    //   }
-    //   })
-    // )
+    setPosts(posts.map(post => {
+      if(postId === post.id){
+        return {...post, likes: (post.likes +1)}
+      }else {
+        return post
+      }
+      })
+    )
   };
 
   return (
     <div className="App">
-      {Posts, SearchBar}
       {/* Check the implementation of each component, to see what props they require, if any! */}
+      <SearchBar />
+      <Posts posts={posts} likePost={likePost}/>
     </div>
   );
 };
 
-const rootElement = document.querySelector('#root')
-ReactDOM.render(<App />, rootElement)
 
 export default App;
