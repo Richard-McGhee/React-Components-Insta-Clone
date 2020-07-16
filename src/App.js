@@ -10,10 +10,12 @@ import React, { useState } from "react";
 import Posts from "./components/Posts/Posts";
 import SearchBar from "./components/SearchBar/SearchBar";
 // Import the dummyData
+import DummyData from "./dummy-data"
 import "./App.css";
 
 const App = () => {
   // Create a state called 'posts' to hold the list of posts, initializing to dummyData.
+  const [posts, setPosts] = useState(DummyData)
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
 
   const likePost = postId => {
@@ -23,11 +25,19 @@ const App = () => {
     // The callback passed into `posts.map()` performs the following logic:
     //  - if the `id` of the post matches `postId`, return a new post object containing an increased 'likes' count.
     //  - otherwise just return the post object unchanged.
+    // setPosts(posts.map(item => {
+    //   if(postId === post.id){
+    //     return likeCount(likePost + 1)
+    //   }else {
+    //     return posts
+    //   }
+    //   })
+    // )
   };
 
   return (
     <div className="App">
-      {/* Add SearchBar and Posts here to render them */}
+      {Posts, SearchBar}
       {/* Check the implementation of each component, to see what props they require, if any! */}
     </div>
   );
